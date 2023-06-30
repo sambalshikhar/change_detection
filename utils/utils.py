@@ -9,7 +9,7 @@ import numpy as np
 import colorsys
 from .indices import *
 from skimage.transform import resize
-
+from kneed import KneeLocator
 
 def extract_tiles_from_image(satellite_image_path, output_folder,shp_file):
     # Read the shapefile
@@ -99,7 +99,7 @@ def get_image(file_path,band_infomation):
         char_index=min_max_normalize(char(src,band_infomation).index_array)
         sr_index=min_max_normalize(char(src,band_infomation).index_array)
 
-        all_indices=[ndvi_index,bsi_index,bai_index,char_index,sr_index]
+        all_indices=[bsi_index,bai_index,char_index,sr_index]
 
         normalized_image=min_max_normalize(image.transpose(1,2,0))
 
